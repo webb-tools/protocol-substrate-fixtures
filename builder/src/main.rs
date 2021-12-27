@@ -35,10 +35,10 @@ pub fn get_keys(curve: Curve, pk_bytes: &mut Vec<u8>, vk_bytes: &mut Vec<u8>, pk
 }
 
 pub fn write_keys(pk: &[u8], vk: &[u8], pk_u: &[u8]) {
-	let mut verifiying_key = File::create("./fixtures/verifiying_key.bin").unwrap();
+	let mut verifying_key = File::create("./fixtures/verifying_key.bin").unwrap();
 	let mut proving_key = File::create("./fixtures/proving_key.bin").unwrap();
-	let mut proving_key_compressed = File::create("./fixtures/proving_key_compressed.bin").unwrap();
-	verifiying_key.write_all(&vk).unwrap();
+	let mut proving_key_compressed = File::create("./fixtures/proving_key_uncompresed.bin").unwrap();
+	verifying_key.write_all(&vk).unwrap();
 	proving_key.write_all(&pk).unwrap();
 	proving_key_compressed.write_all(&pk_u).unwrap();
 	print!("Wrote files")
