@@ -22,12 +22,12 @@ fn generate_anchor_keys<E: PairingEngine>(curve: Curve, path: &str) {
 	let (circuit, ..) = prover.setup_random_circuit(&mut rng).unwrap();
 
 	let (pk, vk) = setup_keys::<E, _, _>(circuit.clone(), &mut rng).unwrap();
-	let (pk_unchecked, vk_unchecked) = setup_keys_unchecked::<E, _, _>(circuit, &mut rng).unwrap();
+	let (pk_uncompressed, vk_uncompressed) = setup_keys_unchecked::<E, _, _>(circuit, &mut rng).unwrap();
 
 	write(format!("{}/proving_key.bin", path), pk).unwrap();
 	write(format!("{}/verifying_key.bin", path), vk).unwrap();
-	write(format!("{}/proving_key_unchecked.bin", path), pk_unchecked).unwrap();
-	write(format!("{}/verifying_key_unchecked.bin", path), vk_unchecked).unwrap();
+	write(format!("{}/proving_key_uncompressed.bin", path), pk_uncompressed).unwrap();
+	write(format!("{}/verifying_key_uncompressed.bin", path), vk_uncompressed).unwrap();
 }
 
 fn generate_mixer_keys<E: PairingEngine>(curve: Curve, path: &str) {
@@ -39,12 +39,12 @@ fn generate_mixer_keys<E: PairingEngine>(curve: Curve, path: &str) {
 	let (circuit, ..) = prover.setup_random_circuit(&mut rng).unwrap();
 
 	let (pk, vk) = setup_keys::<E, _, _>(circuit.clone(), &mut rng).unwrap();
-	let (pk_unchecked, vk_unchecked) = setup_keys_unchecked::<E, _, _>(circuit, &mut rng).unwrap();
+	let (pk_uncompressed, vk_uncompressed) = setup_keys_unchecked::<E, _, _>(circuit, &mut rng).unwrap();
 
 	write(format!("{}/proving_key.bin", path), pk).unwrap();
 	write(format!("{}/verifying_key.bin", path), vk).unwrap();
-	write(format!("{}/proving_key_unchecked.bin", path), pk_unchecked).unwrap();
-	write(format!("{}/verifying_key_unchecked.bin", path), vk_unchecked).unwrap();
+	write(format!("{}/proving_key_uncompressed.bin", path), pk_uncompressed).unwrap();
+	write(format!("{}/verifying_key_uncompressed.bin", path), vk_uncompressed).unwrap();
 }
 
 fn main() {
