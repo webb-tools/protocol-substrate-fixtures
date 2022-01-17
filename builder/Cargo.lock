@@ -286,9 +286,9 @@ dependencies = [
 
 [[package]]
 name = "arkworks-circuits"
-version = "0.4.13"
+version = "0.4.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b603727d648a0a7b0ba498dc828f77a76f1db02dd52ee80eed1209438ceae73b"
+checksum = "2531520b0c023dfe7b41d0b9a05dd946513fad428b64eef7bff5bfa582219793"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
@@ -318,9 +318,9 @@ dependencies = [
 
 [[package]]
 name = "arkworks-gadgets"
-version = "0.4.12"
+version = "0.4.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0774102601f3c988e9237f4586475278fa942065f5921c2c17f5be3b9000036a"
+checksum = "4489e960d3e95f33eadd0a0f5c225a1c93977520f90a3134b36b1e2c124a60f5"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
@@ -346,9 +346,9 @@ dependencies = [
 
 [[package]]
 name = "arkworks-utils"
-version = "0.4.12"
+version = "0.4.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f4fb2e66a6cee4f679baacbb6e1f62292262337bfacd697921a411a48b6eb47"
+checksum = "cc9dea185ac70d6b1f77932da19e9539ee3e2d3aac41573ecc96e088d95bd7bc"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
