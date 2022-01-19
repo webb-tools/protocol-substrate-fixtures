@@ -1,8 +1,10 @@
 use ark_ec::PairingEngine;
-use arkworks_circuits::setup::common::{setup_keys, setup_keys_unchecked};
 use arkworks_circuits::setup::anchor::AnchorProverSetup;
 use arkworks_circuits::setup::mixer::MixerProverSetup;
 use arkworks_utils::utils::common::{setup_params_x5_3, setup_params_x5_5, setup_params_x5_4, Curve};
+use arkworks_circuits::prelude::ark_crypto_primitives::SNARK;
+use ark_serialize::{CanonicalSerialize};
+use ark_groth16::{Groth16};
 use ark_std::test_rng;
 use ark_bn254::Bn254;
 use std::fs::write;
@@ -21,8 +23,17 @@ fn generate_anchor_keys<E: PairingEngine>(curve: Curve, path: &str) {
 	let prover = AnchorProverSetupBn254_30::new(params3, params4);
 	let (circuit, ..) = prover.setup_random_circuit(&mut rng).unwrap();
 
-	let (pk, vk) = setup_keys::<E, _, _>(circuit.clone(), &mut rng).unwrap();
-	let (pk_uncompressed, vk_uncompressed) = setup_keys_unchecked::<E, _, _>(circuit, &mut rng).unwrap();
+	let (proving_key, verifying_key) = Groth16::<E>::circuit_specific_setup(circuit, &mut rng).unwrap();
+
+	let mut pk = Vec::new();
+	let mut vk = Vec::new();
+	proving_key.serialize(&mut pk).unwrap();
+	verifying_key.serialize(&mut vk).unwrap();
+
+	let mut pk_uncompressed = Vec::new();
+	let mut vk_uncompressed = Vec::new();
+	proving_key.serialize_unchecked(&mut pk_uncompressed).unwrap();
+	verifying_key.serialize_unchecked(&mut vk_uncompressed).unwrap();
 
 	write(format!("{}/proving_key.bin", path), pk).unwrap();
 	write(format!("{}/verifying_key.bin", path), vk).unwrap();
@@ -38,8 +49,17 @@ fn generate_mixer_keys<E: PairingEngine>(curve: Curve, path: &str) {
 	let prover = MixerProverSetupBn254_30::new(params3, params5);
 	let (circuit, ..) = prover.setup_random_circuit(&mut rng).unwrap();
 
-	let (pk, vk) = setup_keys::<E, _, _>(circuit.clone(), &mut rng).unwrap();
-	let (pk_uncompressed, vk_uncompressed) = setup_keys_unchecked::<E, _, _>(circuit, &mut rng).unwrap();
+	let (proving_key, verifying_key) = Groth16::<E>::circuit_specific_setup(circuit, &mut rng).unwrap();
+
+	let mut pk = Vec::new();
+	let mut vk = Vec::new();
+	proving_key.serialize(&mut pk).unwrap();
+	verifying_key.serialize(&mut vk).unwrap();
+
+	let mut pk_uncompressed = Vec::new();
+	let mut vk_uncompressed = Vec::new();
+	proving_key.serialize_unchecked(&mut pk_uncompressed).unwrap();
+	verifying_key.serialize_unchecked(&mut vk_uncompressed).unwrap();
 
 	write(format!("{}/proving_key.bin", path), pk).unwrap();
 	write(format!("{}/verifying_key.bin", path), vk).unwrap();
