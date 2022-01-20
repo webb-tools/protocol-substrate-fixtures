@@ -23,8 +23,8 @@ fn save_keys<E: PairingEngine>(proving_key: ProvingKey<E>, verifying_key: Verify
 
 	let mut pk_uncompressed = Vec::new();
 	let mut vk_uncompressed = Vec::new();
-	proving_key.serialize_unchecked(&mut pk_uncompressed).unwrap();
-	verifying_key.serialize_unchecked(&mut vk_uncompressed).unwrap();
+	proving_key.serialize_uncompressed(&mut pk_uncompressed).unwrap();
+	verifying_key.serialize_uncompressed(&mut vk_uncompressed).unwrap();
 
 	let current_path = current_dir().unwrap();
 	write(format!("{}/{}/proving_key.bin", current_path.display(), path), pk).unwrap();
