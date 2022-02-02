@@ -6,8 +6,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-arkworks-circuits = { version = "0.4.18" }
-arkworks-utils = { version = "0.4.18" }
+arkworks-circuits = { git = "https://github.com/webb-tools/arkworks-gadgets", branch = "filip/fix-vanchor-setup" }
+arkworks-utils = { git = "https://github.com/webb-tools/arkworks-gadgets", branch = "filip/fix-vanchor-setup" }
 ark-std = { version = "^0.3.0", default-features = false }
 ark-groth16 = { version = "^0.3.0", default-features = false }
 ark-ec = { version = "^0.3.0", default-features = false }
