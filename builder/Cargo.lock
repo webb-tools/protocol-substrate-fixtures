@@ -287,7 +287,8 @@ dependencies = [
 [[package]]
 name = "arkworks-circuits"
 version = "0.4.19"
-source = "git+https://github.com/webb-tools/arkworks-gadgets?branch=filip/fix-vanchor-setup#05e89c24160c0f0ae2aec13ea3ca99a3a6d9d197"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eb921437dfdb2cf9ab56608621d20d31ef098f58cd25890682ed25eea6e9575f"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
@@ -317,7 +318,8 @@ dependencies = [
 [[package]]
 name = "arkworks-gadgets"
 version = "0.4.19"
-source = "git+https://github.com/webb-tools/arkworks-gadgets?branch=filip/fix-vanchor-setup#05e89c24160c0f0ae2aec13ea3ca99a3a6d9d197"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a7d33dbfa51845f74f31ca1bf7a91384591674ddf22e02046a6778384e65d37e"
 dependencies = [
  "ark-crypto-primitives",
  "ark-ec",
@@ -339,7 +341,8 @@ dependencies = [
 [[package]]
 name = "arkworks-utils"
 version = "0.4.19"
-source = "git+https://github.com/webb-tools/arkworks-gadgets?branch=filip/fix-vanchor-setup#05e89c24160c0f0ae2aec13ea3ca99a3a6d9d197"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c510357a5b584a7c2a069fa23167b95ff6389f4ee3532347431e5b4d694f5f2f"
 dependencies = [
  "ark-bls12-381",
  "ark-bn254",
