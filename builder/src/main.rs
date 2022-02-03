@@ -1,7 +1,8 @@
 use ark_ec::PairingEngine;
 use arkworks_circuits::setup::anchor::AnchorProverSetup;
 use arkworks_circuits::setup::mixer::MixerProverSetup;
-use arkworks_utils::utils::common::{setup_params_x5_3, setup_params_x5_5, setup_params_x5_4, Curve};
+use arkworks_circuits::setup::vanchor::VAnchorProverSetup;
+use arkworks_utils::utils::common::{setup_params_x5_2, setup_params_x5_3, setup_params_x5_5, setup_params_x5_4, Curve};
 use arkworks_circuits::prelude::ark_crypto_primitives::SNARK;
 use ark_serialize::CanonicalSerialize;
 use ark_groth16::{Groth16, ProvingKey, VerifyingKey};
@@ -14,6 +15,7 @@ pub const N: usize = 30;
 pub const M: usize = 2;
 type AnchorProverSetupBn254_30<F> = AnchorProverSetup<F, M, N>;
 type MixerProverSetupBn254_30<F> = MixerProverSetup<F, N>;
+type VAnchorProverSetupBn254_30_2x2<F> = VAnchorProverSetup<F, N, M, 2, 2>;
 
 fn save_keys<E: PairingEngine>(proving_key: ProvingKey<E>, verifying_key: VerifyingKey<E>, path: &str) {
 	let mut pk = Vec::new();
@@ -59,7 +61,23 @@ fn generate_anchor_keys<E: PairingEngine>(curve: Curve) {
 	save_keys(proving_key, verifying_key, "../fixed-anchor/bn254/x5");
 }
 
+fn generate_vanchor_keys<E: PairingEngine>(curve: Curve) {
+	let mut rng = test_rng();
+	let params2 = setup_params_x5_2::<E::Fr>(curve);
+	let params3 = setup_params_x5_3::<E::Fr>(curve);
+	let params4 = setup_params_x5_4::<E::Fr>(curve);
+	let params5 = setup_params_x5_5::<E::Fr>(curve);
+
+	let prover = VAnchorProverSetupBn254_30_2x2::new(params2, params3, params4, params5);
+	let circuit = prover.setup_random_circuit(&mut rng).unwrap();
+
+	let (proving_key, verifying_key) = Groth16::<E>::circuit_specific_setup(circuit, &mut rng).unwrap();
+
+	save_keys(proving_key, verifying_key, "../vanchor/bn254/x5");
+}
+
 fn main() {
 	generate_mixer_keys::<Bn254>(Curve::Bn254);
 	generate_anchor_keys::<Bn254>(Curve::Bn254);
+	generate_vanchor_keys::<Bn254>(Curve::Bn254);
 }
