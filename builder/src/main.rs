@@ -12,11 +12,15 @@ use std::env::current_dir;
 
 use ark_bn254::Bn254;
 
-pub const N: usize = 30;
-pub const M: usize = 2;
-type MixerProverSetupBn254_30 = MixerR1CSProver<Bn254, N>;
-type AnchorProverSetupBn254_30 = AnchorR1CSProver<Bn254, M, N>;
-type VAnchorProverSetupBn254_30_2x2 = VAnchorR1CSProver<Bn254, N, M, 2, 2>;
+const TREE_HEIGHT: usize = 30;
+type MixerProverSetupBn254_30 = MixerR1CSProver<Bn254, TREE_HEIGHT>;
+
+const ANCHOR_CT: usize = 2;
+type AnchorProverSetupBn254_30 = AnchorR1CSProver<Bn254, TREE_HEIGHT, ANCHOR_CT>;
+
+const NUM_IN_ITXOS: usize = 2;
+const NUM_OUT_ITXOS: usize = 2;
+type VAnchorProverSetupBn254_30_2x2 = VAnchorR1CSProver<Bn254, TREE_HEIGHT, ANCHOR_CT, NUM_IN_ITXOS, NUM_OUT_ITXOS>;
 
 fn save_keys<E: PairingEngine>(proving_key: ProvingKey<E>, verifying_key: VerifyingKey<E>, path: &str) {
 	let mut pk = Vec::new();
