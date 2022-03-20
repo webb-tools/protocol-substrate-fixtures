@@ -1,7 +1,7 @@
 # protocol-substrate-fixtures
 
 ## Building new keys
-In order to create keys for circuits with new configurations we should modify the script's main function in the following way:
+In order to create keys for circuits with new configurations we should modify the script's main function (`builder/src/main.rs`) in the following way:
 ```rust
 fn main() {
     ...
