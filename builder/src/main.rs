@@ -18,9 +18,13 @@ type MixerProverSetupBn254_30 = MixerR1CSProver<Bn254, TREE_HEIGHT>;
 const ANCHOR_CT: usize = 2;
 type AnchorProverSetupBn254_30 = AnchorR1CSProver<Bn254, TREE_HEIGHT, ANCHOR_CT>;
 
-const NUM_IN_ITXOS: usize = 2;
-const NUM_OUT_ITXOS: usize = 2;
-type VAnchorProverSetupBn254_30_2x2 = VAnchorR1CSProver<Bn254, TREE_HEIGHT, ANCHOR_CT, NUM_IN_ITXOS, NUM_OUT_ITXOS>;
+const NUM_IN_ITXOS_2_2: usize = 2;
+const NUM_OUT_ITXOS_2_2: usize = 2;
+type VAnchorProverSetupBn254_30_2x2 = VAnchorR1CSProver<Bn254, TREE_HEIGHT, ANCHOR_CT, NUM_IN_ITXOS_2_2, NUM_OUT_ITXOS_2_2>;
+
+const NUM_IN_ITXOS_16_2: usize = 16;
+const NUM_OUT_ITXOS_16_2: usize = 2;
+type VAnchorProverSetupBn254_30_16x2 = VAnchorR1CSProver<Bn254, TREE_HEIGHT, ANCHOR_CT, NUM_IN_ITXOS_16_2, NUM_OUT_ITXOS_16_2>;
 
 fn save_keys<E: PairingEngine>(proving_key: ProvingKey<E>, verifying_key: VerifyingKey<E>, path: &str) {
 	let mut pk = Vec::new();
@@ -62,7 +66,7 @@ fn generate_anchor_keys<E: PairingEngine>(curve: Curve) {
 	save_keys(proving_key, verifying_key, "../fixed-anchor/bn254/x5");
 }
 
-fn generate_vanchor_keys<E: PairingEngine>(curve: Curve) {
+fn generate_vanchor_2_2_keys<E: PairingEngine>(curve: Curve) {
 	let rng = &mut test_rng();
 
 	// Setup random circuit
@@ -70,11 +74,23 @@ fn generate_vanchor_keys<E: PairingEngine>(curve: Curve) {
 	// Generate the keys
 	let (proving_key, verifying_key) = Groth16::<Bn254>::circuit_specific_setup(c, rng).unwrap();
 
-	save_keys(proving_key, verifying_key, "../vanchor/bn254/x5");
+	save_keys(proving_key, verifying_key, "../vanchor/bn254/x5/2_2");
+}
+
+fn generate_vanchor_16_2_keys<E: PairingEngine>(curve: Curve) {
+	let rng = &mut test_rng();
+
+	// Setup random circuit
+	let c = VAnchorProverSetupBn254_30_16x2::setup_random_circuit(curve, [0u8; 32], rng).unwrap();
+	// Generate the keys
+	let (proving_key, verifying_key) = Groth16::<Bn254>::circuit_specific_setup(c, rng).unwrap();
+
+	save_keys(proving_key, verifying_key, "../vanchor/bn254/x5/16_2");
 }
 
 fn main() {
 	generate_mixer_keys::<Bn254>(Curve::Bn254);
 	generate_anchor_keys::<Bn254>(Curve::Bn254);
-	generate_vanchor_keys::<Bn254>(Curve::Bn254);
+	generate_vanchor_2_2_keys::<Bn254>(Curve::Bn254);
+	generate_vanchor_16_2_keys::<Bn254>(Curve::Bn254);
 }
