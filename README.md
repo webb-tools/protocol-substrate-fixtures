@@ -14,7 +14,8 @@ fn main() {
     
     // Second argument is the path of the folder we wish to
     // save our keys into -- relative to the builder/Cargo.toml
-    generate_vanchor_keys::<Bn254, 30, 3, 8, 16>(Curve::Bn254, "../vanchor/bn254/x5");
+    // Folder name follows the rule of "[anchor]-[input]-[output]", like "3-8-16"
+    generate_vanchor_keys::<Bn254, 30, 3, 8, 16>(Curve::Bn254, "../vanchor/bn254/x5/3-8-16");
     
     ...
 }
