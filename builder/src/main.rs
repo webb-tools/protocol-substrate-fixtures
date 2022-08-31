@@ -4,7 +4,6 @@ use ark_ec::PairingEngine;
 use ark_groth16::{Groth16, ProvingKey, VerifyingKey};
 use ark_serialize::CanonicalSerialize;
 use ark_std::test_rng;
-use arkworks_setups::r1cs::anchor::AnchorR1CSProver;
 use arkworks_setups::r1cs::mixer::MixerR1CSProver;
 use arkworks_setups::r1cs::vanchor::VAnchorR1CSProver;
 use arkworks_utils::Curve;
@@ -35,22 +34,6 @@ fn generate_mixer_keys<E: PairingEngine, const HEIGHT: usize>(curve: Curve, rela
     // Setup random circuit
     let (c, ..) =
         MixerR1CSProver::<E, HEIGHT>::setup_random_circuit(curve, [0u8; 32], rng).unwrap();
-    // Generate the keys
-    let (proving_key, verifying_key) = Groth16::<E>::circuit_specific_setup(c, rng).unwrap();
-
-    save_keys(proving_key, verifying_key, relative_path);
-}
-
-fn generate_anchor_keys<E: PairingEngine, const HEIGHT: usize, const ANCHOR_CT: usize>(
-    curve: Curve,
-    relative_path: &str,
-) {
-    let rng = &mut test_rng();
-
-    // Setup random circuit
-    let (c, ..) =
-        AnchorR1CSProver::<E, HEIGHT, ANCHOR_CT>::setup_random_circuit(curve, [0u8; 32], rng)
-            .unwrap();
     // Generate the keys
     let (proving_key, verifying_key) = Groth16::<E>::circuit_specific_setup(c, rng).unwrap();
 
