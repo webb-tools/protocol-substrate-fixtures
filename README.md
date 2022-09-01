@@ -21,3 +21,13 @@ fn main() {
 }
 ```
 > **Note: The folder structure needs to be setup before running the script**
+
+### Fetching keys
+dvc pull
+
+### Uploading new keys to remote storage
+After building new keys, and deciding to publish to remote storage,
+```
+dvc add substrate-fixtures/
+dvc push --remote aws
+```
