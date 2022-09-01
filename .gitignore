@@ -2,3 +2,4 @@
 **/.idea
 ./builder/fixtures
 **/.DS_Store
+/substrate-fixtures
