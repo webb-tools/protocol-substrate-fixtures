@@ -87,37 +87,37 @@ fn main() {
 
     // Generate anchor keys with tree of heigth 30
     // and anchor count of 2
-    generate_anchor_keys::<Bn254, 30, 2>(Curve::Bn254, "../fixed-anchor/bn254/x5/2");
+    generate_anchor_keys::<Bn254, 30, 2>(Curve::Bn254, "../substrate-fixtures/fixed-anchor/bn254/x5/2");
 
 	// Generate anchor keys with tree of heigth 30
     // and anchor count of 16
-    generate_anchor_keys::<Bn254, 30, 16>(Curve::Bn254, "../fixed-anchor/bn254/x5/16");
+    generate_anchor_keys::<Bn254, 30, 16>(Curve::Bn254, "../substrate-fixtures/fixed-anchor/bn254/x5/16");
 
 	// Generate anchor keys with tree of heigth 30
     // and anchor count of 32
-    generate_anchor_keys::<Bn254, 30, 32>(Curve::Bn254, "../fixed-anchor/bn254/x5/32");
+    generate_anchor_keys::<Bn254, 30, 32>(Curve::Bn254, "../substrate-fixtures/fixed-anchor/bn254/x5/32");
 
     // Generate vanchor keys with tree of height 30
     // and anchor count of 2
     // and number of inputs of 2
     // and number of outputs of 2
-    generate_vanchor_keys::<Bn254, 30, 2, 2, 2>(Curve::Bn254, "../vanchor/bn254/x5/2-2-2");
+    generate_vanchor_keys::<Bn254, 30, 2, 2, 2>(Curve::Bn254, "../substrate-fixtures/vanchor/bn254/x5/2-2-2");
 
     // Generate vanchor keys with tree of height 30
     // and anchor count of 2
     // and number of inputs of 16
     // and number of outputs of 2
-    generate_vanchor_keys::<Bn254, 30, 2, 16, 2>(Curve::Bn254, "../vanchor/bn254/x5/2-16-2");
+    generate_vanchor_keys::<Bn254, 30, 2, 16, 2>(Curve::Bn254, "../substrate-fixtures/vanchor/bn254/x5/2-16-2");
 
 	// Generate vanchor keys with tree of height 30
     // and anchor count of 32
     // and number of inputs of 2
     // and number of outputs of 2
-    generate_vanchor_keys::<Bn254, 30, 32, 2, 2>(Curve::Bn254, "../vanchor/bn254/x5/32-2-2");
+    generate_vanchor_keys::<Bn254, 30, 32, 2, 2>(Curve::Bn254, "../substrate-fixtures/vanchor/bn254/x5/32-2-2");
 
     // Generate vanchor keys with tree of height 30
     // and anchor count of 32
     // and number of inputs of 16
     // and number of outputs of 2
-    generate_vanchor_keys::<Bn254, 30, 32, 16, 2>(Curve::Bn254, "../vanchor/bn254/x5/32-16-2");
+    generate_vanchor_keys::<Bn254, 30, 32, 16, 2>(Curve::Bn254, "../substrate-fixtures/vanchor/bn254/x5/32-16-2");
 }
